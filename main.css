@@ -1,0 +1,12 @@
+td {
+  padding: 1em;
+  font-size: 150%;
+}
+
+td.alive {
+  background-color: green;
+}
+
+td.dead {
+  background-color: #ccc;
+}
