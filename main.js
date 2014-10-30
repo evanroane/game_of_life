@@ -1,9 +1,32 @@
 document.addEventListener('DOMContentLoaded', function(){
-  var matrix = [[0, 0, 0], [1, 1, 1], [0, 0, 0]];
+  // var matrix = [[0, 0, 0], [1, 1, 1], [0, 0, 0]];
+
+  // var matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  //               [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+  //               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  //               [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+  //               [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+  //               [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  //               [0, 1, 1, 0, 0, 1, 1, 0, 0, 0],
+  //               [0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
+  //               [0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+  //               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+var matrix = matrixCreator(100, 100)
+
+function matrixCreator(x, y){
+  var matrix = [];
+  for(var i = 0; i < x; i++){
+    matrix[i] = [];
+    for(var j = 0; j < y; j++){
+      matrix[i][j] = Math.round(Math.random())
+    }
+  }
+  return matrix
+}
+
+
   generateGrid(matrix);
-  // matrix => [0, 1, 0]
-  //           [0, 1, 1]
-  //           [0, 1, 1]generateGrid(matrix);
 
   function generateGrid(matrix){
     var $table = document.querySelector('#grid');
@@ -84,22 +107,16 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   document.querySelector("#tick").addEventListener('click', function(){
-    // function startGam() {
-    //   nIntervId = setInterval(flashText, 500);
-    // }
-    //
-    // function flashText() {
-    //   var oElem = document.getElementById("my_box");
-    //   oElem.style.color = oElem.style.color == "red" ? "blue" : "red";
-    // }
-    //
-    // function stopTextColor() {
-    //   clearInterval(nIntervId);
-    // }
-    //
-    //
-    // Tick button has been pressed
+
     matrix = calculateNextState(matrix);
     generateGrid(matrix);
   });
+
+function nextCycle (){
+  matrix = calculateNextState(matrix);
+  generateGrid(matrix);
+
+}
+setInterval(nextCycle, 75);
+
 });
